@@ -10,7 +10,6 @@ import pl.swiderski.app.ScreenChanger;
 import pl.swiderski.dao.UserDao;
 import pl.swiderski.model.User;
 
-import java.awt.*;
 import java.io.IOException;
 
 public class RegistrationSceneController {
@@ -48,7 +47,9 @@ public class RegistrationSceneController {
                     email.getText(),
                     login.getText(),
                     password.getText());
+
             new UserDao().createNew(user);
+
         } else {
             new AlertMaking().show("Podałes nie poprawne hasło lub login jest juz zajęty! ","Blad");
         }

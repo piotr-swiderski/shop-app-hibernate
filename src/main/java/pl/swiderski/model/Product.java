@@ -14,12 +14,15 @@ public class Product {
     private String serial;
     private String category;
     @Column(nullable = false)
+    private int quantity;
+    @Column(nullable = false)
     private double price;
 
-    public Product(String name, String serial, String category, double price) {
+    public Product(String name, String serial, String category, int quantity, double price) {
         this.name = name;
         this.serial = serial;
         this.category = category;
+        this.quantity = quantity;
         this.price = price;
     }
 
@@ -58,11 +61,31 @@ public class Product {
         this.category = category;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public double getPrice() {
         return price;
     }
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public String toString() {
+        return "Product{" +
+                "ID=" + ID +
+                ", name='" + name + '\'' +
+                ", serial='" + serial + '\'' +
+                ", category='" + category + '\'' +
+                ", quantity=" + quantity +
+                ", price=" + price +
+                '}';
     }
 }

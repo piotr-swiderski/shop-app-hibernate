@@ -5,6 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import pl.swiderski.app.AlertMaking;
 import pl.swiderski.app.ScreenChanger;
 import pl.swiderski.dao.UserDao;
 import pl.swiderski.model.User;
@@ -21,7 +22,15 @@ public class LoginScreenController {
     AnchorPane root;
 
     public void clickLogin() {
-        System.out.println(new UserDao().checkLoginAndPass(login.getText(), password.getText()));
+        if (new UserDao().checkLoginAndPass(login.getText(), password.getText())) {
+            try {
+                new ScreenChanger().change(getClass().getResource("/fxml/productListScene.fxml"), root);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            new AlertMaking().show("Nie prawidlowe dane logowania", "Error");
+        }
     }
 
     public void clickRegistration() {
