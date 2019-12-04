@@ -9,7 +9,7 @@
         <property name="connection.url">jdbc:mysql://localhost:3306/shop_app?createDatabaseIfNotExist=true&amp;useJDBCCompliantTimezoneShift=true&amp;useLegacyDatetimeCode=false&amp;serverTimezone=UTC</property>
         <property name="connection.username">shop_user</property>
         <property name="connection.password">Haslo123</property>
-        <property name="hibernate.hbm2ddl.auto">create</property>
+        <property name="hibernate.hbm2ddl.auto">update</property>
         <property name="show_sql">true</property>
         <mapping class="pl.swiderski.model.User"/>
         <mapping class="pl.swiderski.model.Product"/>

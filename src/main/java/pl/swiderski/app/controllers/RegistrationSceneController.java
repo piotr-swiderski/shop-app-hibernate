@@ -1,7 +1,6 @@
 package pl.swiderski.app.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -40,7 +39,7 @@ public class RegistrationSceneController {
     }
 
     public void clickRegistration() {
-        if (password.getText().equals(confirmPassword.getText()) && new UserDao().CheckAvailabilityLogin(login.getText())) {
+        if (password.getText().equals(confirmPassword.getText()) && new UserDao().checkAvailabilityLogin(login.getText())) {
             User user = new User(
                     first_name.getText(),
                     second_name.getText(),

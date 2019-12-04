@@ -52,7 +52,7 @@ public class UserDao implements LoginService, CommandServiceDao<User>, QueryServ
     }
 
     @Override
-    public boolean CheckAvailabilityLogin(String login) {
+    public boolean checkAvailabilityLogin(String login) {
         Query query = openSession().createQuery("FROM User u WHERE u.login=:u_login");
         query.setParameter("u_login", login);
         if (query.getResultList().size() == 0) {
@@ -60,6 +60,13 @@ public class UserDao implements LoginService, CommandServiceDao<User>, QueryServ
         } else {
             return false;
         }
+    }
+
+    @Override
+    public User getUserByLogin(String login) {
+        Query<User> query = openSession().createQuery("FROM User u WHERE u.login=:u_login",User.class);
+        query.setParameter("u_login", login);
+        return query.getSingleResult();
     }
 
     @Override

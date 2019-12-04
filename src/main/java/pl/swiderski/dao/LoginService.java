@@ -2,6 +2,7 @@ package pl.swiderski.dao;
 
 import org.hibernate.Session;
 import pl.swiderski.DataBaseConnectorFactory;
+import pl.swiderski.model.User;
 
 public interface LoginService {
 
@@ -9,7 +10,9 @@ public interface LoginService {
 
     void editPassword(String login, String oldPass, String NewPass);
 
-    boolean CheckAvailabilityLogin(String login);
+    boolean checkAvailabilityLogin(String login);
+
+    User getUserByLogin(String login);
 
    // default Session openSession(){
    //      return DataBaseConnectorFactory.getFactory().openSession();

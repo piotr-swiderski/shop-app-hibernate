@@ -8,28 +8,59 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="814.0" prefWidth="1281.0" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.ProductListScreenController">
+<AnchorPane prefHeight="814.0" prefWidth="1281.0" styleClass="cardPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.ProductListScreenController">
    <children>
       <BorderPane prefHeight="814.0" prefWidth="1281.0">
          <top>
-            <ToolBar prefHeight="58.0" prefWidth="1281.0" styleClass="cardPane" BorderPane.alignment="CENTER">
+            <ToolBar maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="76.0" prefWidth="1281.0" styleClass="cardPane" BorderPane.alignment="CENTER">
               <items>
-                <Button mnemonicParsing="false" styleClass="topPane" text="Show Product" textFill="WHITE">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="11.0" mnemonicParsing="false" styleClass="topPane" text="Show Product" textFill="WHITE">
-                     <font>
-                        <Font size="13.0" />
-                     </font>
-                  </Button>
+                  <HBox maxHeight="-Infinity" prefHeight="30.0" prefWidth="1064.0">
+                     <children>
+                        <Button mnemonicParsing="false" styleClass="topPane" text="Show Product" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                      <Button mnemonicParsing="false" styleClass="topPane" text="Show Product" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="48.0" prefWidth="184.0">
+                     <children>
+                        <ImageView fitHeight="43.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/login.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <TextField fx:id="loginAccount">
+                           <HBox.margin>
+                              <Insets left="5.0" right="5.0" top="10.0" />
+                           </HBox.margin>
+                        </TextField>
+                     </children>
+                  </HBox>
               </items>
             </ToolBar>
          </top>
@@ -39,10 +70,13 @@
                   <Insets bottom="5.0" left="10.0" right="5.0" top="15.0" />
                </padding>
                <children>
-                  <Label text="Product List Filtr" textFill="WHITE">
+                  <Label contentDisplay="BOTTOM" text="Product List Filter" textFill="WHITE">
                      <font>
                         <Font size="20.0" />
                      </font>
+                     <effect>
+                        <Blend />
+                     </effect>
                   </Label>
                   <VBox prefHeight="200.0" prefWidth="100.0">
                      <padding>
@@ -53,30 +87,57 @@
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <effect>
+                              <Blend />
+                           </effect>
                         </Label>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" text="Category 1">
+                              <RadioButton fx:id="filterCat1" mnemonicParsing="false" text="Category 1" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
                               </RadioButton>
-                              <RadioButton layoutX="10.0" layoutY="15.0" mnemonicParsing="false" text="Category 2">
+                              <RadioButton fx:id="filterCat2" layoutX="10.0" layoutY="15.0" mnemonicParsing="false" text="Category 2" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
                               </RadioButton>
-                              <RadioButton layoutX="10.0" layoutY="37.0" mnemonicParsing="false" text="Category 3">
+                              <RadioButton fx:id="filterCat3" layoutX="10.0" layoutY="37.0" mnemonicParsing="false" text="Category 3" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
                               </RadioButton>
-                              <RadioButton layoutX="10.0" layoutY="54.0" mnemonicParsing="false" text="Category 4">
+                              <RadioButton fx:id="filterCat4" layoutX="10.0" layoutY="54.0" mnemonicParsing="false" text="Category 4" textFill="WHITE">
                                  <VBox.margin>
                                     <Insets bottom="5.0" top="5.0" />
                                  </VBox.margin>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <effect>
+                                    <Blend />
+                                 </effect>
                               </RadioButton>
-                              <Button mnemonicParsing="false" text="Filtr">
+                              <Button mnemonicParsing="false" onAction="#buttonCategoryFilter" styleClass="cardPane" text="Filter">
                                  <font>
                                     <Font size="14.0" />
                                  </font>
@@ -100,6 +161,9 @@
                            <font>
                               <Font size="18.0" />
                            </font>
+                           <effect>
+                              <Blend />
+                           </effect>
                         </Label>
                         <VBox prefHeight="200.0" prefWidth="100.0">
                            <VBox.margin>
@@ -114,7 +178,7 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </Text>
-                              <TextField>
+                              <TextField fx:id="filterMinPrice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="140.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
@@ -127,12 +191,55 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </Text>
-                              <TextField layoutX="10.0" layoutY="27.0">
+                              <TextField fx:id="filterMaxPrice" layoutX="10.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="140.0">
                                  <VBox.margin>
                                     <Insets bottom="5.0" />
                                  </VBox.margin>
                               </TextField>
-                              <Button mnemonicParsing="false" text="Filtr">
+                              <Button mnemonicParsing="false" onAction="#buttonPriceFilter" styleClass="cardPane" text="Filter">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" top="5.0" />
+                                 </VBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Button>
+                           </children>
+                        </VBox>
+                     </children>
+                  </VBox>
+                  <VBox layoutX="20.0" layoutY="275.0" prefHeight="200.0" prefWidth="100.0">
+                     <padding>
+                        <Insets bottom="5.0" left="20.0" />
+                     </padding>
+                     <children>
+                        <Label text="Find" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                           <VBox.margin>
+                              <Insets left="10.0" />
+                           </VBox.margin>
+                           <children>
+                              <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Name of prodcut">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                                 <VBox.margin>
+                                    <Insets top="5.0" />
+                                 </VBox.margin>
+                              </Text>
+                              <TextField fx:id="findByText" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="140.0">
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                 </VBox.margin>
+                              </TextField>
+                              <Button mnemonicParsing="false" onAction="#buttonSearchByName" styleClass="cardPane" text="Search">
                                  <VBox.margin>
                                     <Insets bottom="5.0" left="10.0" top="5.0" />
                                  </VBox.margin>
@@ -150,9 +257,27 @@
          <center>
             <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="tableView" prefHeight="585.0" prefWidth="1026.0" stylesheets="@../table.css">
+                  <HBox prefHeight="36.0" prefWidth="1026.0">
+                     <children>
+                        <Label text="List of products:">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <effect>
+                              <Blend />
+                           </effect>
+                           <HBox.margin>
+                              <Insets left="20.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="5.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TableView fx:id="tableView" prefHeight="365.0" prefWidth="1026.0" stylesheets="@../table.css">
                     <columns>
-                      <TableColumn fx:id="colProductId" prefWidth="84.0" resizable="false" text="ID" />
+                      <TableColumn fx:id="colProductID" prefWidth="84.0" resizable="false" text="ID" />
                       <TableColumn fx:id="colProductName" prefWidth="176.0" resizable="false" text="Name" />
                         <TableColumn fx:id="colProductSerial" prefWidth="173.0" resizable="false" text="Serial" />
                         <TableColumn fx:id="colProductCategory" prefWidth="172.0" resizable="false" text="Category" />
@@ -163,6 +288,61 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
                   </TableView>
+                  <HBox prefHeight="37.0" prefWidth="1026.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#buttonAddSelected" styleClass="topPane" text="Add selected to cart" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="15.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <HBox prefHeight="36.0" prefWidth="1026.0">
+                     <children>
+                        <Label text="Cart :">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <effect>
+                              <Blend />
+                           </effect>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets left="20.0" />
+                     </VBox.margin>
+                  </HBox>
+                  <TableView fx:id="tableViewCart" prefHeight="210.0" prefWidth="1026.0" stylesheets="@../table.css">
+                     <columns>
+                        <TableColumn fx:id="colCartID" prefWidth="84.0" resizable="false" text="ID" />
+                        <TableColumn fx:id="colCartName" prefWidth="176.0" resizable="false" text="Name" />
+                        <TableColumn fx:id="colCartSerial" prefWidth="173.0" resizable="false" text="Serial" />
+                        <TableColumn fx:id="colCartCategory" prefWidth="172.0" resizable="false" text="Category" />
+                        <TableColumn fx:id="colCartQuantity" minWidth="8.0" prefWidth="179.0" resizable="false" text="Quantity" />
+                        <TableColumn fx:id="colCartPrice" prefWidth="184.0" resizable="false" text="Price" />
+                     </columns>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                  </TableView>
+                  <HBox layoutX="10.0" layoutY="426.0" prefHeight="37.0" prefWidth="1026.0">
+                     <children>
+                        <Button mnemonicParsing="false" onAction="#buttonMakeCart" styleClass="topPane" text="Generate Cart" textFill="WHITE">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="15.0" top="5.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
                </children>
                <padding>
                   <Insets bottom="15.0" />
