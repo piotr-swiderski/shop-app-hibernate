@@ -13,11 +13,13 @@ import java.io.IOException;
 
 public class RegistrationSceneController {
 
+    
+    UserDao userDao = new UserDao();
 
     @FXML
-    TextField first_name;
+    TextField firstName;
     @FXML
-    TextField second_name;
+    TextField secondName;
     @FXML
     TextField email;
     @FXML
@@ -39,15 +41,15 @@ public class RegistrationSceneController {
     }
 
     public void clickRegistration() {
-        if (password.getText().equals(confirmPassword.getText()) && new UserDao().checkAvailabilityLogin(login.getText())) {
+        if (password.getText().equals(confirmPassword.getText()) && userDao.checkAvailabilityLogin(login.getText())) {
             User user = new User(
-                    first_name.getText(),
-                    second_name.getText(),
+                    firstName.getText(),
+                    secondName.getText(),
                     email.getText(),
                     login.getText(),
                     password.getText());
 
-            new UserDao().createNew(user);
+            userDao.createNew(user);
 
         } else {
             new AlertMaking().show("Podałes nie poprawne hasło lub login jest juz zajęty! ","Blad");

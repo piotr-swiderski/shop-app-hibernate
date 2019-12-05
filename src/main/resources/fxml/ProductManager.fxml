@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="562.0" prefWidth="997.0" styleClass="cardPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.ProductManagerController">
+   <children>
+      <HBox prefHeight="40.0" prefWidth="997.0">
+         <children>
+            <JFXButton onAction="#addProduct" prefHeight="43.0" prefWidth="113.0" styleClass="topPane" text="Add product" textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="20.0" layoutY="20.0" onAction="#editProduct" prefHeight="43.0" prefWidth="113.0" styleClass="topPane" text="Edit Product" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+            <JFXButton layoutX="143.0" layoutY="20.0" onAction="#deleteProduct" prefHeight="43.0" prefWidth="113.0" styleClass="topPane" text="Delete Product" textFill="WHITE">
+               <HBox.margin>
+                  <Insets left="5.0" right="5.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </JFXButton>
+         </children>
+         <padding>
+            <Insets left="10.0" right="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <AnchorPane fx:id="anchorPaneProductManager" layoutX="14.0" layoutY="48.0" prefHeight="513.0" prefWidth="983.0" />
+   </children>
+</AnchorPane>

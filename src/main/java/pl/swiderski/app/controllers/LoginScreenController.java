@@ -25,7 +25,6 @@ public class LoginScreenController {
         if (new UserDao().checkLoginAndPass(login.getText(), password.getText())) {
             try {
                 LoginUser.setUser(new UserDao().getUserByLogin(login.getText()));
-                System.out.println(LoginUser.getUser().getLogin());
                 new ScreenChanger().change(getClass().getResource("/fxml/productListScene.fxml"), root);
             } catch (IOException e) {
                 e.printStackTrace();

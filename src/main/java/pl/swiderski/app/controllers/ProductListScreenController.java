@@ -1,11 +1,13 @@
 package pl.swiderski.app.controllers;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.StageStyle;
 import pl.swiderski.app.AlertMaking;
 import pl.swiderski.dao.CartDao;
 import pl.swiderski.dao.ProductDao;
@@ -14,12 +16,17 @@ import pl.swiderski.model.CategoryEnum;
 import pl.swiderski.model.Product;
 import pl.swiderski.model.User;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class ProductListScreenController {
 
 
+    ProductDao productDao = new ProductDao();
+    
+    @FXML
+    AnchorPane root;
     @FXML
     TableView<Product> tableView;
     @FXML
@@ -70,7 +77,7 @@ public class ProductListScreenController {
     @FXML
     public void initialize() {
         setColumnProperties();
-        setProductItemsToTable(new ProductDao().findAll());
+        setProductItemsToTable(productDao.findAll());
         loginAccount.setText(LoginUser.getUser().getLogin());
     }
 
@@ -101,7 +108,7 @@ public class ProductListScreenController {
     private void buttonCategoryFilter() {
         List<String> selectedCategory = getSelectedCategory();
         if (selectedCategory.size() > 0) {
-            setProductItemsToTable(new ProductDao().findByCategory(selectedCategory));
+            setProductItemsToTable(productDao.findByCategory(selectedCategory));
         } else {
             new AlertMaking().show("Zaznacz którąś z kategorii!!", "Blad");
         }
@@ -114,7 +121,7 @@ public class ProductListScreenController {
         if (min > max || Double.isNaN(min) || Double.isNaN(max)) {
             new AlertMaking().show("Wartosc min > max!!!", "");
         } else {
-            setProductItemsToTable(new ProductDao().findByPriceLimit(min, max));
+            setProductItemsToTable(productDao.findByPriceLimit(min, max));
         }
 
     }
@@ -122,7 +129,7 @@ public class ProductListScreenController {
     @FXML
     public void buttonSearchByName() {
         String text = findByText.getText();
-        List<Product> productList = new ProductDao().findByName(text);
+        List<Product> productList = productDao.findByName(text);
         setProductItemsToTable(productList);
     }
 
@@ -132,6 +139,7 @@ public class ProductListScreenController {
         if (selectedItem != null) {
             productList.add(selectedItem);
             setProductItemsToTableCart(productList);
+
         }
     }
 
@@ -139,6 +147,32 @@ public class ProductListScreenController {
     public void buttonMakeCart() {
         Cart cart = new Cart(LoginUser.getUser(), productList);
         new CartDao().createNew(cart);
+        clearTableCart();
+    }
+
+    @FXML
+    void buttonProductManager() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/ProductManager.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Dialog<Object> objectDialog = new Dialog<>();
+        objectDialog.getDialogPane().setContent(root);
+        objectDialog.initStyle(StageStyle.UTILITY);
+        objectDialog.getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
+        Node closeButton = objectDialog.getDialogPane().lookupButton(ButtonType.CLOSE);
+        closeButton.managedProperty().bind(closeButton.visibleProperty());
+        closeButton.setVisible(false);
+        objectDialog.showAndWait();
+    }
+
+
+
+    private void clearTableCart() {
+        productList = new ArrayList<>();
+        setProductItemsToTableCart(productList);
     }
 
     private void setProductItemsToTableCart(List<Product> products) {
@@ -147,19 +181,19 @@ public class ProductListScreenController {
 
     }
 
-    public List<String> getSelectedCategory() {
+    private List<String> getSelectedCategory() {
         List<String> list = new ArrayList<>();
         if (filterCat1.isSelected()) {
-            list.add(CategoryEnum.CATEGORY1.getCategory());
+            list.add(CategoryEnum.CATEGORY1.getString());
         }
         if (filterCat2.isSelected()) {
-            list.add(CategoryEnum.CATEGORY2.getCategory());
+            list.add(CategoryEnum.CATEGORY2.getString());
         }
         if (filterCat3.isSelected()) {
-            list.add(CategoryEnum.CATEGORY3.getCategory());
+            list.add(CategoryEnum.CATEGORY3.getString());
         }
         if (filterCat4.isSelected()) {
-            list.add(CategoryEnum.CATEGORY4.getCategory());
+            list.add(CategoryEnum.CATEGORY4.getString());
         }
         return list;
     }
@@ -170,7 +204,7 @@ public class ProductListScreenController {
             return Double.parseDouble(filterMinPrice.getText());
         } catch (Exception e) {
             new AlertMaking().show("Wartosc min musi byc liczba", "Blad");
-           // e.printStackTrace();
+            // e.printStackTrace();
         }
         return Double.NaN;
     }

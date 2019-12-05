@@ -10,3 +10,19 @@
 .topPane{
     -fx-background-color: #3196DE;
 }
+
+.text-fieldJFX {
+    -fx-prompt-text-fill: white;
+    -fx-text-fill: white;
+}
+.text-fieldJFX > .text {
+        -fx-effect: dropshadow( two-pass-box , blue , .5, 10 , 1 , 1);
+}
+
+
+.text-fieldJFXwhite > .text {
+
+.text-fieldJFX > .text {
+        -fx-text-inner-color: white;
+}
+}

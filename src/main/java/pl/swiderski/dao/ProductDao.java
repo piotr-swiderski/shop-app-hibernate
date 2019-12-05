@@ -1,5 +1,6 @@
 package pl.swiderski.dao;
 
+import org.hibernate.Session;
 import org.hibernate.query.Query;
 import pl.swiderski.model.Product;
 
@@ -10,7 +11,15 @@ public class ProductDao implements QueryServiceDao<Product>, CommandServiceDao<P
 
     @Override
     public void createNew(Product product) {
-
+        Session session = openSession();
+        session.beginTransaction();
+        try {
+            session.save(product);
+            session.getTransaction().commit();
+        }
+        catch (Exception e){
+            session.getTransaction().rollback();;
+        }
     }
 
     @Override
@@ -20,6 +29,17 @@ public class ProductDao implements QueryServiceDao<Product>, CommandServiceDao<P
 
     @Override
     public void delete(int ID) {
+        Session session = openSession();
+        session.beginTransaction();
+        try {
+            Query query = session.createQuery("Delete Product AS p WHERE p.id=:id");
+            query.setParameter("id",ID);
+            query.executeUpdate();
+            session.getTransaction().commit();
+        }catch (Exception e){
+            e.printStackTrace();
+            session.getTransaction().rollback();
+        }
 
     }
 

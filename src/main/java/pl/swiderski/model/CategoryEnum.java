@@ -14,7 +14,7 @@ public enum CategoryEnum {
         this.category = category;
     }
 
-    public String getCategory() {
+    public String getString() {
         return category;
     }
 }

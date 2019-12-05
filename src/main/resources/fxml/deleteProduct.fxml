@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="513.0" prefWidth="983.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.ProductManagerDeleteProductController">
+   <children>
+      <HBox layoutY="6.0" prefHeight="506.0" prefWidth="983.0">
+         <children>
+            <Pane layoutX="10.0" layoutY="10.0" prefHeight="506.0" prefWidth="979.0">
+               <children>
+                  <TableView fx:id="tableView" layoutX="62.0" layoutY="30.0" prefHeight="311.0" prefWidth="816.0">
+                     <columns>
+                        <TableColumn fx:id="colID" editable="false" prefWidth="44.0" text="ID" />
+                        <TableColumn fx:id="colName" editable="false" prefWidth="173.0" text="Name" />
+                        <TableColumn fx:id="colSerial" editable="false" prefWidth="145.0" text="Serial" />
+                        <TableColumn fx:id="colCategory" editable="false" prefWidth="132.0" text="Category" />
+                        <TableColumn fx:id="colQuantity" editable="false" prefWidth="138.0" text="Quantity" />
+                        <TableColumn fx:id="colPrice" editable="false" prefWidth="149.0" text="Price" />
+                     </columns>
+                  </TableView>
+                  <JFXButton buttonType="RAISED" layoutX="412.0" layoutY="393.0" onAction="#deleteSelected" ripplerFill="#a15252" styleClass="topPane" stylesheets="@../style.css" text="Delete Selected" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

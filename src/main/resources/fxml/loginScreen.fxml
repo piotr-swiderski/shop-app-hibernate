@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="root" prefHeight="581.0" prefWidth="831.0" styleClass="root" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.LoginScreenController">
@@ -13,14 +15,6 @@
       <AnchorPane prefHeight="189.0" prefWidth="831.0" styleClass="topPane" />
       <AnchorPane layoutX="179.0" layoutY="41.0" prefHeight="500.0" prefWidth="474.0" styleClass="cardPane">
          <children>
-            <TextField fx:id="login" layoutX="70.0" layoutY="190.0" prefHeight="25.0" prefWidth="325.0" promptText="User Login">
-               <font>
-                  <Font size="13.0" />
-               </font></TextField>
-            <PasswordField fx:id="password" layoutX="70.0" layoutY="252.0" prefHeight="25.0" prefWidth="325.0" promptText="User Password">
-               <font>
-                  <Font size="13.0" />
-               </font></PasswordField>
             <ImageView fitHeight="256.0" fitWidth="256.0" layoutX="105.0" layoutY="-34.0" pickOnBounds="true" preserveRatio="true" scaleX="0.5" scaleY="0.5">
                <image>
                   <Image url="@../img/login.png" />
@@ -36,6 +30,26 @@
                   <Font size="13.0" />
                </font>
             </Button>
+            <VBox layoutX="115.0" layoutY="183.0" prefHeight="134.0" prefWidth="244.0">
+               <children>
+                  <JFXTextField fx:id="login" promptText="Login">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="10.0" />
+                     </VBox.margin>
+                  </JFXTextField>
+                  <JFXPasswordField fx:id="password" promptText="Password">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets bottom="5.0" top="10.0" />
+                     </VBox.margin>
+                  </JFXPasswordField>
+               </children>
+            </VBox>
          </children>
       </AnchorPane>
    </children>

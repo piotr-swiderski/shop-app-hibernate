@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXHamburger?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -18,7 +22,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="814.0" prefWidth="1281.0" styleClass="cardPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.ProductListScreenController">
+<AnchorPane fx:id="root" prefHeight="814.0" prefWidth="1281.0" styleClass="cardPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.ProductListScreenController">
    <children>
       <BorderPane prefHeight="814.0" prefWidth="1281.0">
          <top>
@@ -34,7 +38,7 @@
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
                         </Button>
-                      <Button mnemonicParsing="false" styleClass="topPane" text="Show Product" textFill="WHITE">
+                      <Button mnemonicParsing="false" onAction="#buttonProductManager" styleClass="topPane" text="Add/edit product" textFill="WHITE">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -42,6 +46,7 @@
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
                         </Button>
+                        <JFXHamburger />
                      </children>
                   </HBox>
                   <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="48.0" prefWidth="184.0">
@@ -137,14 +142,14 @@
                                     <Blend />
                                  </effect>
                               </RadioButton>
-                              <Button mnemonicParsing="false" onAction="#buttonCategoryFilter" styleClass="cardPane" text="Filter">
+                              <JFXButton buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#buttonCategoryFilter" prefHeight="31.0" prefWidth="67.0" ripplerFill="#53c3d7" styleClass="cardPane" text="Filter" wrapText="true">
                                  <font>
-                                    <Font size="14.0" />
+                                    <Font size="15.0" />
                                  </font>
                                  <VBox.margin>
-                                    <Insets left="10.0" top="5.0" />
+                                    <Insets bottom="5.0" left="10.0" top="5.0" />
                                  </VBox.margin>
-                              </Button>
+                              </JFXButton>
                            </children>
                            <VBox.margin>
                               <Insets left="10.0" />
@@ -178,11 +183,18 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </Text>
-                              <TextField fx:id="filterMinPrice" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="140.0">
+                              <JFXTextField fx:id="filterMinPrice" focusColor="#c0c6d7" labelFloat="true" maxWidth="-Infinity" unFocusColor="WHITE">
                                  <VBox.margin>
-                                    <Insets bottom="5.0" />
+                                    <Insets bottom="5.0" top="5.0" />
                                  </VBox.margin>
-                              </TextField>
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                                 <styleClass>
+                                    <String fx:value="text-fieldJFXwhite" />
+                                    <String fx:value="text-fieldJFX" />
+                                 </styleClass>
+                              </JFXTextField>
                               <Text fill="WHITE" layoutX="10.0" layoutY="23.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Max price">
                                  <font>
                                     <Font size="15.0" />
@@ -191,19 +203,22 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </Text>
-                              <TextField fx:id="filterMaxPrice" layoutX="10.0" layoutY="27.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="140.0">
+                              <JFXTextField fx:id="filterMaxPrice" focusColor="#d1d8eb" layoutX="10.0" layoutY="35.0" maxWidth="-Infinity" styleClass="text-fieldJFX" unFocusColor="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                                  <VBox.margin>
-                                    <Insets bottom="5.0" />
+                                    <Insets bottom="5.0" top="5.0" />
                                  </VBox.margin>
-                              </TextField>
-                              <Button mnemonicParsing="false" onAction="#buttonPriceFilter" styleClass="cardPane" text="Filter">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" top="5.0" />
-                                 </VBox.margin>
+                              </JFXTextField>
+                              <JFXButton buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#buttonPriceFilter" prefHeight="31.0" prefWidth="67.0" ripplerFill="#53c3d7" styleClass="cardPane" text="Filter" wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
-                              </Button>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </JFXButton>
                            </children>
                         </VBox>
                      </children>
@@ -234,19 +249,22 @@
                                     <Insets top="5.0" />
                                  </VBox.margin>
                               </Text>
-                              <TextField fx:id="findByText" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="140.0">
+                              <JFXTextField fx:id="findByText" focusColor="#cfd4e1" maxWidth="-Infinity" styleClass="text-fieldJFX" unFocusColor="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
                                  <VBox.margin>
-                                    <Insets bottom="5.0" />
+                                    <Insets bottom="5.0" top="5.0" />
                                  </VBox.margin>
-                              </TextField>
-                              <Button mnemonicParsing="false" onAction="#buttonSearchByName" styleClass="cardPane" text="Search">
-                                 <VBox.margin>
-                                    <Insets bottom="5.0" left="10.0" top="5.0" />
-                                 </VBox.margin>
+                              </JFXTextField>
+                              <JFXButton buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#buttonSearchByName" prefHeight="31.0" prefWidth="67.0" ripplerFill="#53c3d7" styleClass="cardPane" text="Find" wrapText="true">
                                  <font>
                                     <Font size="15.0" />
                                  </font>
-                              </Button>
+                                 <VBox.margin>
+                                    <Insets bottom="5.0" left="10.0" top="5.0" />
+                                 </VBox.margin>
+                              </JFXButton>
                            </children>
                         </VBox>
                      </children>
@@ -290,14 +308,14 @@
                   </TableView>
                   <HBox prefHeight="37.0" prefWidth="1026.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#buttonAddSelected" styleClass="topPane" text="Add selected to cart" textFill="WHITE">
+                        <JFXButton buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#buttonAddSelected" prefHeight="31.0" prefWidth="171.0" ripplerFill="#d1d6d7" styleClass="topPane" text="Add selected to cart" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
                            <HBox.margin>
-                              <Insets left="15.0" />
+                              <Insets left="20.0" />
                            </HBox.margin>
-                        </Button>
+                        </JFXButton>
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />
@@ -333,15 +351,18 @@
                   </TableView>
                   <HBox layoutX="10.0" layoutY="426.0" prefHeight="37.0" prefWidth="1026.0">
                      <children>
-                        <Button mnemonicParsing="false" onAction="#buttonMakeCart" styleClass="topPane" text="Generate Cart" textFill="WHITE">
+                        <JFXButton buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#buttonMakeCart" prefHeight="31.0" prefWidth="171.0" ripplerFill="#d1d6d7" styleClass="topPane" text="Generate cart" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
                            <HBox.margin>
-                              <Insets bottom="5.0" left="15.0" top="5.0" />
+                              <Insets left="20.0" />
                            </HBox.margin>
-                        </Button>
+                        </JFXButton>
                      </children>
+                     <VBox.margin>
+                        <Insets bottom="10.0" top="10.0" />
+                     </VBox.margin>
                   </HBox>
                </children>
                <padding>
