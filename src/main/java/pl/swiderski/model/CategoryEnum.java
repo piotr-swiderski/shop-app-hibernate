@@ -1,12 +1,20 @@
 package pl.swiderski.model;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 public enum CategoryEnum {
 
-    CATEGORY1("Category1"),
-    CATEGORY2("Category2"),
-    CATEGORY3("Category3"),
-    CATEGORY4("Category4"),
-    CATEGORY5("Category5");
+    CATEGORY1("Owoce"),
+    CATEGORY2("Warzywa"),
+    CATEGORY3("Slodycze"),
+    CATEGORY4("Napoje"),
+    CATEGORY5("Produkty szkolne"),
+    CATEGORY6("Czesci samochodowe"),
+    CATEGORY7("Akcesoria komputerowe");
 
     private final String category;
 
@@ -16,5 +24,11 @@ public enum CategoryEnum {
 
     public String getString() {
         return category;
+    }
+
+    public static List<String> CategoryList(){
+        return Stream.of(CategoryEnum.values())
+                .map(s -> s.getString())
+                .collect(Collectors.toList());
     }
 }

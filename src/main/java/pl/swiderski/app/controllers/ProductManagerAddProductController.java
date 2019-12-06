@@ -15,9 +15,9 @@ import java.util.List;
 
 public class ProductManagerAddProductController {
 
-    
+
     ProductDao productDao = new ProductDao();
-    
+
     @FXML
     private JFXTextField addProductName;
 
@@ -57,11 +57,7 @@ public class ProductManagerAddProductController {
     public void initialize() {
         setColumnProperties();
         setProductItemsToTable(productDao.findAll());
-        addProductCategory.getItems().addAll(CategoryEnum.CATEGORY1.getString(),
-                CategoryEnum.CATEGORY2.getString(),
-                CategoryEnum.CATEGORY3.getString(),
-                CategoryEnum.CATEGORY4.getString(),
-                CategoryEnum.CATEGORY5.getString());
+        addProductCategory.getItems().setAll(CategoryEnum.CategoryList());
     }
 
 

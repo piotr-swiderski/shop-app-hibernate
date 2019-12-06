@@ -13,13 +13,20 @@ public  class AlertMaking {
         alert.showAndWait();
     }
 
-    public void show(String errorInfo, String title) {
+    public void showErrorAlert(String errorInfo, String title) {
         AlertMaking alertMaking = new AlertMaking();
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setContentText(errorInfo);
         alert.setHeaderText("Błąd !!!");
         alert.setTitle(title);
         alert.showAndWait();
+    }
+
+    public void showInfoAlert(String infoText) {
+        AlertMaking alertMaking = new AlertMaking();
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setContentText(infoText);
+        alert.show();
     }
 
 

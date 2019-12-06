@@ -52,7 +52,7 @@ public class RegistrationSceneController {
             userDao.createNew(user);
 
         } else {
-            new AlertMaking().show("Podałes nie poprawne hasło lub login jest juz zajęty! ","Blad");
+            new AlertMaking().showErrorAlert("Podałes nie poprawne hasło lub login jest juz zajęty! ","Blad");
         }
 
     }

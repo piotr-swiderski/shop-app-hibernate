@@ -8,11 +8,15 @@ public interface LoginService {
 
     boolean checkLoginAndPass(String login, String pass);
 
-    void editPassword(String login, String oldPass, String NewPass);
+    boolean editPassword(int ID, String oldPass, String NewPass);
 
     boolean checkAvailabilityLogin(String login);
 
     User getUserByLogin(String login);
+
+    User getUserByID(int id);
+
+    void editEmail(int id, String newEmail);
 
    // default Session openSession(){
    //      return DataBaseConnectorFactory.getFactory().openSession();

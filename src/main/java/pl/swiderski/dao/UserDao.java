@@ -47,8 +47,22 @@ public class UserDao implements LoginService, CommandServiceDao<User>, QueryServ
     }
 
     @Override
-    public void editPassword(String login, String oldPass, String NewPass) {
-
+    public boolean editPassword(int ID, String oldPass, String newPass) {
+        Session session = openSession();
+        session.beginTransaction();
+        try {
+            Query query = session.createQuery("update User u set u.password = :password where u.id =:id and u.password =:oldPassword");
+            query.setParameter("password", new Hash(newPass).hash());
+            query.setParameter("id", ID);
+            query.setParameter("oldPassword", new Hash(oldPass).hash());
+            int i = query.executeUpdate();
+            session.getTransaction().commit();
+            return i > 0;
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+            e.printStackTrace();
+        }
+        return false;
     }
 
     @Override
@@ -64,9 +78,31 @@ public class UserDao implements LoginService, CommandServiceDao<User>, QueryServ
 
     @Override
     public User getUserByLogin(String login) {
-        Query<User> query = openSession().createQuery("FROM User u WHERE u.login=:u_login",User.class);
+        Query<User> query = openSession().createQuery("FROM User u WHERE u.login=:u_login", User.class);
         query.setParameter("u_login", login);
         return query.getSingleResult();
+    }
+
+    @Override
+    public User getUserByID(int id) {
+        Query<User> query = openSession().createQuery("FROM User u WHERE u.id=:id", User.class);
+        query.setParameter("id", id);
+        return query.getSingleResult();
+    }
+
+    @Override
+    public void editEmail(int id, String newEmail) {
+        Session session = openSession();
+        session.beginTransaction();
+        try {
+            Query query = session.createQuery("update User u set u.email = :email where u.id =:id");
+            query.setParameter("email", newEmail);
+            query.setParameter("id", id);
+            query.executeUpdate();
+            session.getTransaction().commit();
+        } catch (Exception e) {
+            session.getTransaction().rollback();
+        }
     }
 
     @Override

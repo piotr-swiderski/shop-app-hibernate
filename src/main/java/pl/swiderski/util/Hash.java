@@ -25,4 +25,5 @@ public class Hash {
             throw new RuntimeException("Could not hash password");
         }
     }
+
 }

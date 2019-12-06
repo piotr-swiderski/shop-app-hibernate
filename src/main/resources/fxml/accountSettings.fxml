@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="553.0" prefWidth="817.0" styleClass="topPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.accountSettingsController">
+   <children>
+      <Pane prefHeight="200.0" prefWidth="817.0" styleClass="topPane" />
+      <Pane layoutX="14.0" layoutY="30.0" prefHeight="510.0" prefWidth="387.0" styleClass="cardPane">
+         <children>
+            <VBox layoutX="64.0" layoutY="11.0" prefHeight="489.0" prefWidth="259.0" spacing="15.0">
+               <children>
+                  <VBox prefHeight="172.0" prefWidth="296.0" spacing="10.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="215.0" text="Zmień hasło:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXPasswordField fx:id="oldPassword" promptText="Podaj stare hasło:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXPasswordField>
+                        <JFXPasswordField fx:id="newPassword" layoutX="10.0" layoutY="47.0" promptText="Podaj nowe hasło:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXPasswordField>
+                        <JFXPasswordField fx:id="newPasswordConf" layoutX="10.0" layoutY="87.0" promptText="Potwierdź nowe hasło:">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXPasswordField>
+                        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#changePasswordButton" prefHeight="25.0" prefWidth="138.0" styleClass="topPane" text="Akceptuj zmiany:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+                  <VBox prefHeight="150.0" prefWidth="307.0" spacing="10.0">
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="27.0" prefWidth="215.0" text="Zmień email:">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <JFXTextField fx:id="newEmail" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="258.0" promptText="Podaj nowy email:">
+                           <font>
+                              <Font size="14.0" />
+                           </font></JFXTextField>
+                        <JFXTextField fx:id="newEmailConf" layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="258.0" promptText="Potwierdz email:">
+                           <font>
+                              <Font size="14.0" />
+                           </font></JFXTextField>
+                        <JFXButton alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" onAction="#changeEmailButton" prefHeight="25.0" prefWidth="138.0" styleClass="topPane" text="Akceptuj zmiany:" textFill="WHITE">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </VBox>
+               </children>
+            </VBox>
+         </children>
+      </Pane>
+      <Pane layoutX="416.0" layoutY="30.0" prefHeight="510.0" prefWidth="387.0" styleClass="cardPane">
+         <children>
+            <VBox layoutX="65.0" layoutY="14.0" prefHeight="453.0" prefWidth="258.0" spacing="10.0">
+               <children>
+                  <Label alignment="CENTER" prefHeight="26.0" prefWidth="259.0" text="Moje dane:">
+                     <font>
+                        <Font size="17.0" />
+                     </font>
+                  </Label>
+                  <Label prefHeight="21.0" prefWidth="259.0" text="Imię:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="accountName" text="Imię:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <Label layoutX="10.0" layoutY="46.0" prefHeight="21.0" prefWidth="259.0" text="Nazwisko:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="accountSurname" layoutX="10.0" layoutY="46.0" text="Nazwisko:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <Label layoutX="10.0" layoutY="121.0" prefHeight="21.0" prefWidth="259.0" text="Login:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="accountLogin" layoutX="10.0" layoutY="81.0" text="Login:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+                  <Label layoutX="10.0" layoutY="196.0" prefHeight="21.0" prefWidth="259.0" text="Email:">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <JFXTextField fx:id="accountEmail" layoutX="10.0" layoutY="116.0" text="Emial:">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </JFXTextField>
+               </children>
+            </VBox>
+         </children></Pane>
+   </children>
+</AnchorPane>
