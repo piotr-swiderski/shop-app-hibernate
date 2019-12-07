@@ -10,7 +10,7 @@ insert into products(name,serial,category,quantity,price) values ('Dlugopis','12
 insert into products(name,serial,category,quantity,price) values ('Lizak','1241','Slodycze',400,0.5)
 insert into products(name,serial,category,quantity,price) values ('Woda','1241','Napoje',400,1.5)
 insert into products(name,serial,category,quantity,price) values ('Wisnia','1236','Owoce',200,2.5)
-insert into products(name,serial,category,quantity,price) values ('Marchew','1237','Warzywa',200,1.5)
+insert into products(name,serial,category,quantity,price) values ('Warzywo','1237','Warzywa',200,1.5)
 insert into products(name,serial,category,quantity,price) values ('Skrzynia biegow','1246','Czesci samochodowe',20,3000)
 insert into products(name,serial,category,quantity,price) values ('Monitor','1247','Akcesoria komputerowe',20,700)
 insert into products(name,serial,category,quantity,price) values ('Dynia','1238','Warzywa',400,3.5)
