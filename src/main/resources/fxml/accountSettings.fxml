@@ -3,7 +3,9 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.Blend?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
@@ -82,43 +84,67 @@
                   </Label>
                   <Label prefHeight="21.0" prefWidth="259.0" text="Imię:">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="19.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="accountName" text="Imię:" editable="false">
+                  <JFXTextField fx:id="accountName" editable="false" text="Imię:">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="15.0" />
+                     </VBox.margin>
+                     <effect>
+                        <Blend />
+                     </effect>
                   </JFXTextField>
                   <Label layoutX="10.0" layoutY="46.0" prefHeight="21.0" prefWidth="259.0" text="Nazwisko:">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="19.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="accountSurname" layoutX="10.0" layoutY="46.0" text="Nazwisko:" editable="false">
+                  <JFXTextField fx:id="accountSurname" editable="false" layoutX="10.0" layoutY="46.0" text="Nazwisko:">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="15.0" />
+                     </VBox.margin>
+                     <effect>
+                        <Blend />
+                     </effect>
                   </JFXTextField>
-                  <Label layoutX="10.0" layoutY="121.0" prefHeight="21.0" prefWidth="259.0" text="Login:" >
+                  <Label layoutX="10.0" layoutY="121.0" prefHeight="21.0" prefWidth="259.0" text="Login:">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="19.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="accountLogin" layoutX="10.0" layoutY="81.0" text="Login:" editable="false">
+                  <JFXTextField fx:id="accountLogin" editable="false" layoutX="10.0" layoutY="81.0" text="Login:">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="15.0" />
+                     </VBox.margin>
+                     <effect>
+                        <Blend />
+                     </effect>
                   </JFXTextField>
                   <Label layoutX="10.0" layoutY="196.0" prefHeight="21.0" prefWidth="259.0" text="Email:">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="19.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="accountEmail" layoutX="10.0" layoutY="116.0" text="Emial:" editable="false">
+                  <JFXTextField fx:id="accountEmail" editable="false" layoutX="10.0" layoutY="116.0" text="Emial:">
                      <font>
                         <Font size="18.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets left="15.0" />
+                     </VBox.margin>
+                     <effect>
+                        <Blend />
+                     </effect>
                   </JFXTextField>
                </children>
             </VBox>

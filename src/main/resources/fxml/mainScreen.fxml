@@ -29,14 +29,6 @@
               <items>
                   <HBox maxHeight="-Infinity" prefHeight="30.0" prefWidth="1064.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="120.0" styleClass="topPane" text="Show Product" textFill="WHITE">
-                           <font>
-                              <Font size="13.0" />
-                           </font>
-                           <HBox.margin>
-                              <Insets />
-                           </HBox.margin>
-                        </Button>
                       <Button mnemonicParsing="false" onAction="#buttonProductManager" prefHeight="29.0" prefWidth="120.0" styleClass="topPane" text="Product Manager" textFill="WHITE">
                            <font>
                               <Font size="13.0" />
@@ -294,10 +286,13 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </JFXButton>
-                        <JFXTextField fx:id="productQuantityToCart" promptText="Ilosc" />
+                        <JFXTextField fx:id="productQuantityToCart" promptText="Ilosc">
+                           <font>
+                              <Font size="15.0" />
+                           </font></JFXTextField>
                      </children>
                      <VBox.margin>
-                        <Insets bottom="10.0" top="10.0" />
+                        <Insets bottom="20.0" top="15.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox prefHeight="36.0" prefWidth="1026.0">

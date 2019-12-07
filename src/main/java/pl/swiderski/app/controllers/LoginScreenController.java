@@ -29,7 +29,7 @@ public class LoginScreenController {
         if (userDao.checkLoginAndPass(login.getText(), password.getText())) {
             try {
                 LoginUser.setUserID(new UserDao().getUserByLogin(login.getText()).getID());
-                screenChanger.change(getClass().getResource("/fxml/productListScene.fxml"), root);
+                screenChanger.change(getClass().getResource("/fxml/mainScreen.fxml"), root);
             } catch (IOException e) {
                 e.printStackTrace();
             }

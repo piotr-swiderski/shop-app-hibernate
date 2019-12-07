@@ -210,6 +210,7 @@ public class ProductListScreenController {
 
 
     private void addProductToCartList(int quantity, Product selectedItem) {
+        selectedItem.setQuantity(quantity);
         productList.add(selectedItem);
         productDao.decrementQuantity(selectedItem.getID(), quantity);
         setProductItemsToTableCart(productList);

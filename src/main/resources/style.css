@@ -27,15 +27,3 @@
 }
 }
 
-
-.scroll-bar:horizontal{
-    viability:hidden;
-}
-
-.address .scroll-bar:vertical .track {
-  visibility: hidden;
-}
-
-.address2 .scroll-bar:vertical .track-background {
-  visibility: hidden;
-}
