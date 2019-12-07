@@ -17,6 +17,10 @@ public enum CategoryEnum {
     CATEGORY7("Akcesoria komputerowe");
 
     private final String category;
+    private static final List<String> categoryList = Stream.of(CategoryEnum.values())
+            .map(CategoryEnum::getString)
+            .collect(Collectors.toList());
+
 
     CategoryEnum(String category) {
         this.category = category;
@@ -26,9 +30,11 @@ public enum CategoryEnum {
         return category;
     }
 
-    public static List<String> CategoryList(){
-        return Stream.of(CategoryEnum.values())
-                .map(s -> s.getString())
-                .collect(Collectors.toList());
+    public static List<String> getCategoryList() {
+        return categoryList;
+    }
+
+    public static int getIndexOfCategory(String category){
+        return categoryList.indexOf(category);
     }
 }

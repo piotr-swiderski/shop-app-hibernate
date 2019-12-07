@@ -6,7 +6,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import pl.swiderski.app.AlertMaking;
+import pl.swiderski.app.util.AlertMaking;
 import pl.swiderski.dao.ProductDao;
 import pl.swiderski.model.CategoryEnum;
 import pl.swiderski.model.Product;
@@ -16,7 +16,8 @@ import java.util.List;
 public class ProductManagerAddProductController {
 
 
-    ProductDao productDao = new ProductDao();
+    private ProductDao productDao = new ProductDao();
+    private AlertMaking alertMaking = new AlertMaking();
 
     @FXML
     private JFXTextField addProductName;
@@ -54,10 +55,12 @@ public class ProductManagerAddProductController {
     @FXML
     private TableColumn<?, ?> colPrice;
 
+
+    @FXML
     public void initialize() {
         setColumnProperties();
         setProductItemsToTable(productDao.findAll());
-        addProductCategory.getItems().setAll(CategoryEnum.CategoryList());
+        addProductCategory.getItems().setAll(CategoryEnum.getCategoryList());
     }
 
 
@@ -75,6 +78,7 @@ public class ProductManagerAddProductController {
         clearProductPanel();
     }
 
+
     private void clearProductPanel() {
         addProductName.clear();
         addProductSerial.clear();
@@ -90,34 +94,37 @@ public class ProductManagerAddProductController {
         int quantity = getQuantityFromGui();
         double price = getPriceFromGui();
 
-        Product product = new Product(name, serial, category, quantity, price);
-        return product;
+        return new Product(name, serial, category, quantity, price);
     }
+
 
     private void setProductItemsToTable(List<Product> products) {
         tableView.getItems().clear();
         tableView.getItems().setAll(products);
     }
 
+
     private double getPriceFromGui() {
         double price = Double.NaN;
         try {
             price = Double.parseDouble(addProdcutPrice.getText());
         } catch (Exception e) {
-            AlertMaking.get("Zla wartosc ceny!!!");
+            alertMaking.showErrorAlert("Zla wartosc ceny!!!","ERROR");
         }
         return price;
     }
+
 
     private int getQuantityFromGui() {
         int quantity = 0;
         try {
             quantity = Integer.parseInt(addProductQuantity.getText());
         } catch (Exception e) {
-            AlertMaking.get("Pdoales zla ilosc!!!");
+            alertMaking.showErrorAlert("Pdoales zla ilosc!!!","ERROR");
         }
         return quantity;
     }
+
 
     private void setColumnProperties() {
         colID.setCellValueFactory(new PropertyValueFactory<>("ID"));

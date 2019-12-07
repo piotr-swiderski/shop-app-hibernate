@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ProductManagerDeleteProductController {
 
-    ProductDao productDao = new ProductDao();
+    private ProductDao productDao = new ProductDao();
 
     @FXML
     private TableView<Product> tableView;
@@ -35,18 +35,17 @@ public class ProductManagerDeleteProductController {
     private TableColumn<Product, Double> colPrice;
 
 
-    public void initialize(){
+    @FXML
+    public void initialize() {
         setColumnProperties();
         setProductItemsToTable(productDao.findAll());
     }
 
-
-    public void deleteSelected(){
-        Product selectedItem = tableView.getSelectionModel().getSelectedItem();
-        System.out.println(selectedItem.getID());
-        new ProductDao().delete(selectedItem.getID());
+    @FXML
+    public void deleteSelectedItem() {
+        Product selectedItem = getSelectedItem();
+        productDao.delete(selectedItem.getID());
         setProductItemsToTable(productDao.findAll());
-
     }
 
 
@@ -59,10 +58,14 @@ public class ProductManagerDeleteProductController {
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
+
     private void setProductItemsToTable(List<Product> products) {
         tableView.getItems().clear();
         tableView.getItems().setAll(products);
     }
 
+    private Product getSelectedItem() {
+        return tableView.getSelectionModel().getSelectedItem();
+    }
 
 }

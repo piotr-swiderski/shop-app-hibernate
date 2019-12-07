@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -14,7 +16,7 @@
          <children>
             <Pane layoutX="10.0" layoutY="10.0" prefHeight="506.0" prefWidth="979.0">
                <children>
-                  <TableView fx:id="tableView" layoutX="62.0" layoutY="30.0" prefHeight="311.0" prefWidth="816.0">
+                  <TableView fx:id="tableView" layoutX="82.0" layoutY="88.0" prefHeight="311.0" prefWidth="816.0" stylesheets="@../table.css">
                      <columns>
                         <TableColumn fx:id="colID" editable="false" prefWidth="44.0" text="ID" />
                         <TableColumn fx:id="colName" editable="false" prefWidth="173.0" text="Name" />
@@ -23,12 +25,21 @@
                         <TableColumn fx:id="colQuantity" editable="false" prefWidth="138.0" text="Quantity" />
                         <TableColumn fx:id="colPrice" editable="false" prefWidth="149.0" text="Price" />
                      </columns>
+                     <styleClass>
+                        <String fx:value="table-cell" />
+                        <String fx:value="table-view" />
+                     </styleClass>
                   </TableView>
-                  <JFXButton buttonType="RAISED" layoutX="412.0" layoutY="393.0" onAction="#deleteSelected" ripplerFill="#a15252" styleClass="topPane" stylesheets="@../style.css" text="Delete Selected" textFill="WHITE">
+                  <JFXButton buttonType="RAISED" layoutX="412.0" layoutY="415.0" onAction="#deleteSelectedItem" ripplerFill="#a15252" styleClass="topPane" stylesheets="@../style.css" text="Delete Selected" textFill="WHITE">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
+                  <Label layoutX="379.0" layoutY="33.0" text="Delete products: ">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
          </children>

@@ -29,7 +29,7 @@
               <items>
                   <HBox maxHeight="-Infinity" prefHeight="30.0" prefWidth="1064.0" spacing="10.0">
                      <children>
-                        <Button mnemonicParsing="false" styleClass="topPane" text="Show Product" textFill="WHITE">
+                        <Button mnemonicParsing="false" prefHeight="29.0" prefWidth="120.0" styleClass="topPane" text="Show Product" textFill="WHITE">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -37,7 +37,7 @@
                               <Insets />
                            </HBox.margin>
                         </Button>
-                      <Button mnemonicParsing="false" onAction="#buttonProductManager" styleClass="topPane" text="Product Manager" textFill="WHITE">
+                      <Button mnemonicParsing="false" onAction="#buttonProductManager" prefHeight="29.0" prefWidth="120.0" styleClass="topPane" text="Product Manager" textFill="WHITE">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -45,7 +45,12 @@
                               <Insets />
                            </HBox.margin>
                         </Button>
-                        <Button layoutX="123.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonAccountSettings" styleClass="topPane" text="Account Settings" textFill="WHITE">
+                        <Button layoutX="123.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonAccountSettings" prefHeight="29.0" prefWidth="120.0" styleClass="topPane" text="Account Settings" textFill="WHITE">
+                           <font>
+                              <Font size="13.0" />
+                           </font>
+                        </Button>
+                        <Button layoutX="246.0" layoutY="10.0" mnemonicParsing="false" onAction="#buttonMyCarts" prefHeight="29.0" prefWidth="120.0" styleClass="topPane" text="My Carts" textFill="WHITE">
                            <font>
                               <Font size="13.0" />
                            </font>
@@ -54,7 +59,12 @@
                   </HBox>
                   <HBox maxHeight="-Infinity" minHeight="-Infinity" prefHeight="48.0" prefWidth="184.0">
                      <children>
-                        <ImageView fitHeight="43.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="userLogoutButton" fitHeight="44.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../img/logout2.png" />
+                           </image>
+                        </ImageView>
+                        <ImageView fx:id="userAccountSettingsButton" fitHeight="43.0" fitWidth="53.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../img/login.png" />
                            </image>
@@ -62,7 +72,7 @@
                               <Insets left="5.0" right="5.0" />
                            </HBox.margin>
                         </ImageView>
-                        <TextField fx:id="loginAccount">
+                        <TextField fx:id="loginAccount" prefHeight="25.0" prefWidth="88.0">
                            <HBox.margin>
                               <Insets left="5.0" right="5.0" top="10.0" />
                            </HBox.margin>
@@ -274,9 +284,9 @@
                         <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
                      </padding>
                   </TableView>
-                  <HBox prefHeight="37.0" prefWidth="1026.0">
+                  <HBox prefHeight="37.0" prefWidth="1026.0" spacing="10.0">
                      <children>
-                        <JFXButton buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#buttonAddSelected" prefHeight="31.0" prefWidth="171.0" ripplerFill="#d1d6d7" styleClass="topPane" text="Add selected to cart" textFill="WHITE" wrapText="true">
+                        <JFXButton buttonType="RAISED" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#buttonAddSelectedToCart" prefHeight="31.0" prefWidth="171.0" ripplerFill="#d1d6d7" styleClass="topPane" text="Add selected to cart" textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="15.0" />
                            </font>
@@ -284,6 +294,7 @@
                               <Insets left="20.0" />
                            </HBox.margin>
                         </JFXButton>
+                        <JFXTextField fx:id="productQuantityToCart" promptText="Ilosc" />
                      </children>
                      <VBox.margin>
                         <Insets bottom="10.0" top="10.0" />

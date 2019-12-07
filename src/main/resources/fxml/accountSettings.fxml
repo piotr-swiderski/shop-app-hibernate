@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="553.0" prefWidth="817.0" styleClass="topPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.accountSettingsController">
+<AnchorPane prefHeight="553.0" prefWidth="817.0" styleClass="topPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.AccountSettingsController">
    <children>
       <Pane prefHeight="200.0" prefWidth="817.0" styleClass="topPane" />
       <Pane layoutX="14.0" layoutY="30.0" prefHeight="510.0" prefWidth="387.0" styleClass="cardPane">
@@ -85,7 +85,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="accountName" text="Imię:">
+                  <JFXTextField fx:id="accountName" text="Imię:" editable="false">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -95,17 +95,17 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="accountSurname" layoutX="10.0" layoutY="46.0" text="Nazwisko:">
+                  <JFXTextField fx:id="accountSurname" layoutX="10.0" layoutY="46.0" text="Nazwisko:" editable="false">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </JFXTextField>
-                  <Label layoutX="10.0" layoutY="121.0" prefHeight="21.0" prefWidth="259.0" text="Login:">
+                  <Label layoutX="10.0" layoutY="121.0" prefHeight="21.0" prefWidth="259.0" text="Login:" >
                      <font>
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="accountLogin" layoutX="10.0" layoutY="81.0" text="Login:">
+                  <JFXTextField fx:id="accountLogin" layoutX="10.0" layoutY="81.0" text="Login:" editable="false">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -115,7 +115,7 @@
                         <Font size="16.0" />
                      </font>
                   </Label>
-                  <JFXTextField fx:id="accountEmail" layoutX="10.0" layoutY="116.0" text="Emial:">
+                  <JFXTextField fx:id="accountEmail" layoutX="10.0" layoutY="116.0" text="Emial:" editable="false">
                      <font>
                         <Font size="18.0" />
                      </font>

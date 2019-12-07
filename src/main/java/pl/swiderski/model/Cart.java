@@ -1,7 +1,14 @@
 package pl.swiderski.model;
 
 
+import org.hibernate.annotations.ColumnDefault;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -11,12 +18,13 @@ public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int ID;
-
     @OneToOne
     private User user;
-
     @ManyToMany
     private List<Product> products;
+
+    @CreationTimestamp
+    private LocalDateTime createDateTime;
 
     public Cart(User user, List<Product> products) {
         this.user = user;
@@ -48,5 +56,13 @@ public class Cart {
 
     public void setProducts(List<Product> products) {
         this.products = products;
+    }
+
+    public LocalDateTime getCreateDateTime() {
+        return createDateTime;
+    }
+
+    public void setCreateDateTime(LocalDateTime createDateTime) {
+        this.createDateTime = createDateTime;
     }
 }

@@ -3,11 +3,12 @@ package pl.swiderski.app.controllers;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
-import pl.swiderski.app.AlertMaking;
+import pl.swiderski.app.util.AlertMaking;
+import pl.swiderski.app.util.LoginUser;
 import pl.swiderski.dao.UserDao;
 import pl.swiderski.model.User;
 
-public class accountSettingsController {
+public class AccountSettingsController {
 
     private UserDao userDao = new UserDao();
     private AlertMaking alertMaking = new AlertMaking();
@@ -48,7 +49,7 @@ public class accountSettingsController {
     @FXML
     void changeEmailButton() {
         int loginUserId = LoginUser.getUser().getID();
-        if (isTypedEmailEquals(newEmail.getText(), newEmailConf.getText())) {
+        if (isTypedEmailEquals()) {
             userDao.editEmail(loginUserId, newEmail.getText());
             fillProfileData();
             alertMaking.showInfoAlert("Email zostal zmieniony");
@@ -60,14 +61,14 @@ public class accountSettingsController {
 
     @FXML
     void changePasswordButton() {
-        if (isTypedEmailEquals()) {
+        if (isTypedPassEquals()) {
             updatePassword();
         } else {
             alertMaking.showErrorAlert("Hasla nie sa takie same", "Blad");
         }
     }
 
-    private boolean isTypedEmailEquals() {
+    private boolean isTypedPassEquals() {
         return newPassword.getText().equals(newPasswordConf.getText());
     }
 
@@ -80,17 +81,18 @@ public class accountSettingsController {
         } else {
             new AlertMaking().showErrorAlert("Haslo nie zmienione, sprawdz hasla", "Error");
         }
-
-
     }
+
 
     private boolean hasChangePass(int loginUserId, String newPass, String oldPass) {
         return userDao.editPassword(loginUserId, oldPass, newPass);
     }
 
-    private boolean isTypedEmailEquals(String text, String text2) {
-        return text.equals(text2);
+
+    private boolean isTypedEmailEquals() {
+        return newEmail.getText().equals(newEmailConf.getText());
     }
+
 
 
     private void fillProfileData() {
@@ -100,8 +102,5 @@ public class accountSettingsController {
         accountLogin.setText(user.getLogin());
         accountEmail.setText(user.getEmail());
     }
-
-    // TODO zrobic zeby nie mozna bylo edytowac stalych TextField
-
 
 }

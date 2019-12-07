@@ -3,6 +3,7 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
 <?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
@@ -19,48 +20,65 @@
          <children>
             <Pane prefHeight="506.0" prefWidth="461.0">
                <children>
-                  <VBox layoutX="45.0" layoutY="53.0" prefHeight="245.0" prefWidth="397.0">
+                  <VBox layoutX="45.0" layoutY="53.0" prefHeight="245.0" prefWidth="397.0" spacing="15.0">
                      <children>
                         <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="46.0" prefWidth="381.0" text="Edit prodcut">
                            <font>
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <JFXTextField fx:id="addProductName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" promptText="Product name">
+                        <HBox prefHeight="100.0" prefWidth="200.0" spacing="5.0">
+                           <children>
+                              <Label alignment="CENTER" prefHeight="27.0" prefWidth="30.0" text="ID:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </Label>
+                              <JFXTextField fx:id="editProductID" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="304.0" promptText="ID:">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </JFXTextField>
+                           </children>
+                           <padding>
+                              <Insets left="25.0" right="25.0" />
+                           </padding>
+                        </HBox>
+                        <JFXTextField fx:id="editProductName" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" promptText="Product name">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="25.0" right="25.0" top="20.0" />
+                              <Insets left="25.0" right="25.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font size="15.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField fx:id="addProductSerial" layoutX="35.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" promptText="Serial">
+                        <JFXTextField fx:id="editProductSerial" layoutX="35.0" layoutY="56.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" promptText="Serial">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
+                              <Insets left="25.0" right="25.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font size="15.0" />
                            </font>
                         </JFXTextField>
-                        <JFXComboBox fx:id="addProductCategory" prefHeight="25.0" prefWidth="340.0" promptText="Category">
+                        <JFXComboBox fx:id="editProductCategory" prefHeight="25.0" prefWidth="340.0" promptText="Category">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
+                              <Insets left="25.0" right="25.0" />
                            </VBox.margin>
                         </JFXComboBox>
-                        <JFXTextField fx:id="addProductQuantity" layoutX="10.0" layoutY="81.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" promptText="Quantity">
+                        <JFXTextField fx:id="editProductQuantity" layoutX="10.0" layoutY="81.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" promptText="Quantity">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
+                              <Insets left="25.0" right="25.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font size="15.0" />
                            </font>
                         </JFXTextField>
-                        <JFXTextField fx:id="addProdcutPrice" layoutX="10.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" promptText="Price">
+                        <JFXTextField fx:id="editProductPrice" layoutX="10.0" layoutY="106.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="25.0" prefWidth="340.0" promptText="Price">
                            <VBox.margin>
-                              <Insets bottom="5.0" left="25.0" right="25.0" top="5.0" />
+                              <Insets left="25.0" right="25.0" />
                            </VBox.margin>
                            <font>
-                              <Font size="14.0" />
+                              <Font size="15.0" />
                            </font>
                         </JFXTextField>
                      </children>
@@ -79,7 +97,7 @@
             </Pane>
             <Pane layoutX="10.0" layoutY="10.0" prefHeight="506.0" prefWidth="522.0">
                <children>
-                  <TableView fx:id="tableView" layoutX="14.0" layoutY="14.0" prefHeight="487.0" prefWidth="505.0">
+                  <TableView fx:id="tableView" layoutX="5.0" layoutY="14.0" prefHeight="487.0" prefWidth="514.0" stylesheets="@../table.css">
                      <columns>
                         <TableColumn fx:id="colID" editable="false" prefWidth="44.0" text="ID" />
                         <TableColumn fx:id="colName" editable="false" prefWidth="113.0" text="Name" />
@@ -88,6 +106,10 @@
                         <TableColumn fx:id="colQuantity" editable="false" prefWidth="79.0" text="Quantity" />
                         <TableColumn fx:id="colPrice" editable="false" prefWidth="73.0" text="Price" />
                      </columns>
+                     <styleClass>
+                        <String fx:value="table-cell" />
+                        <String fx:value="table-view" />
+                     </styleClass>
                   </TableView>
                </children>
             </Pane>

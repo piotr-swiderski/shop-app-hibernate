@@ -4,8 +4,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import pl.swiderski.app.AlertMaking;
-import pl.swiderski.app.ScreenChanger;
+import pl.swiderski.app.util.AlertMaking;
+import pl.swiderski.app.util.ScreenChanger;
 import pl.swiderski.dao.UserDao;
 import pl.swiderski.model.User;
 
@@ -32,6 +32,7 @@ public class RegistrationSceneController {
     AnchorPane root;
 
 
+    @FXML
     public void clickBack() {
         try {
             new ScreenChanger().change(getClass().getResource("/fxml/loginScreen.fxml"), root);
@@ -40,24 +41,27 @@ public class RegistrationSceneController {
         }
     }
 
+
+    @FXML
     public void clickRegistration() {
-        if (password.getText().equals(confirmPassword.getText()) && userDao.checkAvailabilityLogin(login.getText())) {
+        if (isPassAndConfPassEquals()) {
             User user = new User(
                     firstName.getText(),
                     secondName.getText(),
                     email.getText(),
                     login.getText(),
                     password.getText());
-
             userDao.createNew(user);
-
+            clickBack();
         } else {
             new AlertMaking().showErrorAlert("Podałes nie poprawne hasło lub login jest juz zajęty! ","Blad");
         }
-
     }
 
 
+    private boolean isPassAndConfPassEquals() {
+        return password.getText().equals(confirmPassword.getText()) && userDao.checkAvailabilityLogin(login.getText());
+    }
 
 
 }

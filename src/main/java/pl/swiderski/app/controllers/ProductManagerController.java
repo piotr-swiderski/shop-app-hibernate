@@ -14,11 +14,13 @@ public class ProductManagerController {
     AnchorPane anchorPaneProductManager;
 
 
+    @FXML
     public void initialize() {
         AnchorPane anchorPane = getAnchorPane(getClass().getResource("/fxml/addProduct.fxml"));
         anchorPaneProductManager.getChildren().clear();
         anchorPaneProductManager.getChildren().setAll(anchorPane);
     }
+
 
     @FXML
     void addProduct() {
@@ -27,6 +29,7 @@ public class ProductManagerController {
         anchorPaneProductManager.getChildren().setAll(anchorPane);
     }
 
+
     @FXML
     void deleteProduct() {
         AnchorPane anchorPane = getAnchorPane(getClass().getResource("/fxml/deleteProduct.fxml"));
@@ -34,13 +37,13 @@ public class ProductManagerController {
         anchorPaneProductManager.getChildren().setAll(anchorPane);
     }
 
+
     @FXML
     void editProduct() {
         AnchorPane anchorPane = getAnchorPane(getClass().getResource("/fxml/editProduct.fxml"));
         anchorPaneProductManager.getChildren().clear();
         anchorPaneProductManager.getChildren().setAll(anchorPane);
     }
-
 
 
     private AnchorPane getAnchorPane(URL url) {

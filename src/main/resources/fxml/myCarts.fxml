@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="513.0" prefWidth="983.0" styleClass="cardPane" stylesheets="@../style.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.MyCartsController">
+   <children>
+      <HBox layoutY="6.0" prefHeight="506.0" prefWidth="983.0">
+         <children>
+            <Pane layoutX="10.0" layoutY="10.0" onDragDetected="#openSelectedCart" prefHeight="506.0" prefWidth="979.0">
+               <children>
+                  <JFXButton buttonType="RAISED" layoutX="422.0" layoutY="443.0" onAction="#openSelectedCart" ripplerFill="#38517fdb" styleClass="topPane" stylesheets="@../style.css" text="Open selected cart" textFill="WHITE">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <Label layoutX="433.0" layoutY="14.0" text="My carts">
+                     <font>
+                        <Font size="31.0" />
+                     </font>
+                  </Label>
+                  <TableView fx:id="tableViewCart" layoutX="186.0" layoutY="97.0" prefHeight="312.0" prefWidth="608.0">
+                     <columns>
+                        <TableColumn fx:id="colCartID" prefWidth="230.0" resizable="false" text="CartID" />
+                        <TableColumn fx:id="colCreatedDate" prefWidth="335.0" resizable="true" text="Created Date" />
+                     </columns>
+                     <padding>
+                        <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+                     </padding>
+                     <stylesheets>
+                        <URL value="@../table.css" />
+                        <URL value="@../table.css" />
+                     </stylesheets>
+                  </TableView>
+               </children>
+            </Pane>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>

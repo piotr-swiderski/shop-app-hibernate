@@ -4,13 +4,18 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
-import pl.swiderski.app.AlertMaking;
-import pl.swiderski.app.ScreenChanger;
+import pl.swiderski.app.util.AlertMaking;
+import pl.swiderski.app.util.LoginUser;
+import pl.swiderski.app.util.ScreenChanger;
 import pl.swiderski.dao.UserDao;
 
 import java.io.IOException;
 
 public class LoginScreenController {
+
+    private UserDao userDao = new UserDao();
+    private ScreenChanger screenChanger = new ScreenChanger();
+    private AlertMaking alertMaking = new AlertMaking();
 
     @FXML
     TextField login;
@@ -19,22 +24,24 @@ public class LoginScreenController {
     @FXML
     AnchorPane root;
 
+    @FXML
     public void clickLogin() {
-        if (new UserDao().checkLoginAndPass(login.getText(), password.getText())) {
+        if (userDao.checkLoginAndPass(login.getText(), password.getText())) {
             try {
                 LoginUser.setUserID(new UserDao().getUserByLogin(login.getText()).getID());
-                new ScreenChanger().change(getClass().getResource("/fxml/productListScene.fxml"), root);
+                screenChanger.change(getClass().getResource("/fxml/productListScene.fxml"), root);
             } catch (IOException e) {
                 e.printStackTrace();
             }
         } else {
-            new AlertMaking().showErrorAlert("Nie prawidlowe dane logowania", "Error");
+            alertMaking.showErrorAlert("Nie prawidlowe dane logowania", "Error");
         }
     }
 
+    @FXML
     public void clickRegistration() {
         try {
-            new ScreenChanger().change(getClass().getResource("/fxml/registrationScene.fxml"), root);
+            screenChanger.change(getClass().getResource("/fxml/registrationScene.fxml"), root);
         } catch (IOException e) {
             e.printStackTrace();
         }

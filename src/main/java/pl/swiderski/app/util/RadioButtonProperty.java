@@ -1,4 +1,4 @@
-package pl.swiderski.app.controllers;
+package pl.swiderski.app.util;
 
 import javafx.scene.control.RadioButton;
 import javafx.scene.effect.Blend;
@@ -11,15 +11,17 @@ import java.util.Arrays;
 public class RadioButtonProperty {
 
 
-    RadioButton radioButton = new RadioButton();
+    private RadioButton radioButton;
+
 
     public RadioButtonProperty(String text) {
         radioButton = new RadioButton(text);
     }
 
-    public RadioButton getButton(){
+
+    public RadioButton getButton() {
         radioButton.setTextFill(Color.WHITE);
-        radioButton.setFont(Font.font(14));
+        radioButton.setFont(Font.font(16));
         radioButton.setEffect(new Blend());
         return radioButton;
     }

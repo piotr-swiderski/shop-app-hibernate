@@ -7,7 +7,7 @@ public interface CommandServiceDao<T> {
 
     void createNew(T t);
 
-    void edit(int ID, T t);
+    void edit(T t);
 
     void delete(int ID);
 

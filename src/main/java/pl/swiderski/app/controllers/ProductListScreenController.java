@@ -1,23 +1,30 @@
 package pl.swiderski.app.controllers;
 
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.StageStyle;
-import pl.swiderski.app.AlertMaking;
+import pl.swiderski.app.util.AlertMaking;
+import pl.swiderski.app.util.LoginUser;
+import pl.swiderski.app.util.RadioButtonProperty;
 import pl.swiderski.dao.CartDao;
 import pl.swiderski.dao.ProductDao;
 import pl.swiderski.model.Cart;
 import pl.swiderski.model.CategoryEnum;
 import pl.swiderski.model.Product;
 import pl.swiderski.model.User;
+import pl.swiderski.app.util.*;
 
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,6 +34,7 @@ public class ProductListScreenController {
     private ProductDao productDao = new ProductDao();
     private List<RadioButton> radioButtons;
     private List<Product> productList = new ArrayList<>();
+    AlertMaking alertMaking = new AlertMaking();
 
 
     @FXML
@@ -68,7 +76,13 @@ public class ProductListScreenController {
     @FXML
     TextField loginAccount;
     @FXML
+    TextField productQuantityToCart;
+    @FXML
     VBox vboxWithCateogry;
+    @FXML
+    ImageView userLogoutButton;
+    @FXML
+    ImageView userAccountSettingsButton;
 
 
     @FXML
@@ -77,51 +91,35 @@ public class ProductListScreenController {
         setProductItemsToTable(productDao.findAll());
         loginAccount.setText(LoginUser.getUser().getLogin());
         vboxWithCateogry.getChildren().addAll(initializeCategoriesFilters());
-    }
+        setEventLogout();
+        setEventAccountSettings();
 
-    private void setProductItemsToTable(List<Product> products) {
-        tableView.getItems().clear();
-        tableView.getItems().setAll(products);
-    }
-
-    private void setColumnProperties() {
-        colProductID.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colProductSerial.setCellValueFactory(new PropertyValueFactory<>("serial"));
-        colProductCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
-        colProductQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        colProductPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
-
-        colCartID.setCellValueFactory(new PropertyValueFactory<>("ID"));
-        colCartName.setCellValueFactory(new PropertyValueFactory<>("name"));
-        colCartSerial.setCellValueFactory(new PropertyValueFactory<>("serial"));
-        colCartCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
-        colCartQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
-        colCartPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
 
     @FXML
     private void buttonCategoryFilter() {
         List<String> selectedCategory = getSelectedCategory();
-        if (selectedCategory.size() > 0) {
+        if (isCategoriesSeleccted(selectedCategory.size(), 0)) {
             setProductItemsToTable(productDao.findByCategory(selectedCategory));
         } else {
-            new AlertMaking().showErrorAlert("Zaznacz którąś z kategorii!!", "Blad");
+            alertMaking.showErrorAlert("Zaznacz którąś z kategorii!!", "Blad");
         }
     }
+
 
     @FXML
     private void buttonPriceFilter() {
         double min = getMinValueFilter();
         double max = getMaxValueFilter();
-        if (min > max || Double.isNaN(min) || Double.isNaN(max)) {
-            new AlertMaking().showErrorAlert("Wartosc min > max!!!", "");
+
+        if (isValidRageValue(min, max)) {
+            alertMaking.showErrorAlert("Wartosc min > max!!!", "");
         } else {
             setProductItemsToTable(productDao.findByPriceLimit(min, max));
         }
-
     }
+
 
     @FXML
     public void buttonSearchByName() {
@@ -130,15 +128,24 @@ public class ProductListScreenController {
         setProductItemsToTable(productList);
     }
 
-    @FXML
-    public void buttonAddSelected() {
-        Product selectedItem = tableView.getSelectionModel().getSelectedItem();
-        if (selectedItem != null) {
-            productList.add(selectedItem);
-            setProductItemsToTableCart(productList);
 
+    @FXML
+    public void buttonAddSelectedToCart() {
+        try {
+            int quantity = Integer.parseInt(productQuantityToCart.getText());
+            Product selectedItem = getSelectedItem();
+            if (isEnoughProduct(quantity, selectedItem)) {
+                addProductToCartList(quantity, selectedItem);
+            } else {
+                alertMaking.showErrorAlert("Nie ma wystarczającej ilosci produktu!", "Error");
+            }
+        } catch (NumberFormatException numberFormat) {
+            alertMaking.showInfoAlert("Podaj ilość produktu!!!");
+        } catch (NullPointerException nullPointer) {
+            alertMaking.showInfoAlert("Zaznacz produkt!!!");
         }
     }
+
 
     @FXML
     public void buttonMakeCart() {
@@ -147,8 +154,9 @@ public class ProductListScreenController {
         clearTableCart();
     }
 
+
     @FXML
-    void buttonProductManager() {
+    public void buttonProductManager() {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/ProductManager.fxml"));
@@ -158,8 +166,9 @@ public class ProductListScreenController {
         openNewDialog(root);
     }
 
+
     @FXML
-    void buttonAccountSettings(){
+    public void buttonAccountSettings() {
         Parent root = null;
         try {
             root = FXMLLoader.load(getClass().getResource("/fxml/accountSettings.fxml"));
@@ -168,6 +177,19 @@ public class ProductListScreenController {
         }
         openNewDialog(root);
     }
+
+
+    @FXML
+    public void buttonMyCarts() {
+        Parent root = null;
+        try {
+            root = FXMLLoader.load(getClass().getResource("/fxml/myCarts.fxml"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        openNewDialog(root);
+    }
+
 
     private void openNewDialog(Parent root) {
         Dialog<Object> objectDialog = new Dialog<>();
@@ -186,11 +208,20 @@ public class ProductListScreenController {
         setProductItemsToTableCart(productList);
     }
 
+
+    private void addProductToCartList(int quantity, Product selectedItem) {
+        productList.add(selectedItem);
+        productDao.decrementQuantity(selectedItem.getID(), quantity);
+        setProductItemsToTableCart(productList);
+        setProductItemsToTable(productDao.findAll());
+    }
+
+
     private void setProductItemsToTableCart(List<Product> products) {
         tableViewCart.getItems().clear();
         tableViewCart.getItems().setAll(products);
-
     }
+
 
     private List<String> getSelectedCategory() {
 
@@ -204,34 +235,106 @@ public class ProductListScreenController {
     }
 
 
+    private boolean isCategoriesSeleccted(double size, double i) {
+        return size > i;
+    }
+
+
     private double getMinValueFilter() {
         try {
             return Double.parseDouble(filterMinPrice.getText());
         } catch (Exception e) {
-            new AlertMaking().showErrorAlert("Wartosc min musi byc liczba", "Blad");
+            alertMaking.showErrorAlert("Wartosc min musi byc liczba", "Blad");
             // e.printStackTrace();
         }
         return Double.NaN;
     }
 
+
     private double getMaxValueFilter() {
         try {
             return Double.parseDouble(filterMaxPrice.getText());
         } catch (Exception e) {
-            new AlertMaking().showErrorAlert("Wartosc max musi byc liczba", "Blad");
+            alertMaking.showErrorAlert("Wartosc max musi byc liczba", "Blad");
             //e.printStackTrace();
         }
         return Double.NaN;
     }
 
 
+    private boolean isEnoughProduct(int quantity, Product selectedItem) {
+        return selectedItem.getQuantity() - quantity >= 0;
+    }
+
+
+    private boolean isValidRageValue(double min, double max) {
+        return isCategoriesSeleccted(min, max) || Double.isNaN(min) || Double.isNaN(max);
+    }
+
+
+    private Product getSelectedItem() {
+        return tableView.getSelectionModel().getSelectedItem();
+
+    }
+
+
     private List<RadioButton> initializeCategoriesFilters() {
 
         radioButtons = new ArrayList<>();
-        for (String e : CategoryEnum.CategoryList()) {
+        for (String e : CategoryEnum.getCategoryList()) {
             radioButtons.add(new RadioButtonProperty(e).getButton());
         }
         return radioButtons;
     }
+
+
+    private void setEventAccountSettings() {
+        userAccountSettingsButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                buttonAccountSettings();
+            }
+        });
+    }
+
+
+    private void setEventLogout() {
+        userLogoutButton.addEventHandler(MouseEvent.MOUSE_CLICKED, new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                LoginUser.logoutUser();
+                try {
+                    new ScreenChanger().change(getClass().getResource("/fxml/loginScreen.fxml"), root);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+
+    private void setColumnProperties() {
+        colProductID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        colProductName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colProductSerial.setCellValueFactory(new PropertyValueFactory<>("serial"));
+        colProductCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        colProductQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        colProductPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+
+        colCartID.setCellValueFactory(new PropertyValueFactory<>("ID"));
+        colCartName.setCellValueFactory(new PropertyValueFactory<>("name"));
+        colCartSerial.setCellValueFactory(new PropertyValueFactory<>("serial"));
+        colCartCategory.setCellValueFactory(new PropertyValueFactory<>("category"));
+        colCartQuantity.setCellValueFactory(new PropertyValueFactory<>("quantity"));
+        colCartPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+    }
+
+
+    private void setProductItemsToTable(List<Product> products) {
+        tableView.getItems().clear();
+        tableView.getItems().setAll(products);
+    }
+
+
 
 }

@@ -6,32 +6,34 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
-import pl.swiderski.app.AlertMaking;
 import pl.swiderski.dao.ProductDao;
 import pl.swiderski.model.CategoryEnum;
 import pl.swiderski.model.Product;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class ProductManagerEditProductController {
 
-    ProductDao productDao = new ProductDao();
+    private ProductDao productDao = new ProductDao();
+    private Product selectedProduct = new Product();
 
     @FXML
-    private JFXTextField addProductName;
+    private JFXTextField editProductID;
 
     @FXML
-    private JFXTextField addProductSerial;
+    private JFXTextField editProductName;
 
     @FXML
-    private JFXComboBox<?> addProductCategory;
+    private JFXTextField editProductSerial;
 
     @FXML
-    private JFXTextField addProductQuantity;
+    private JFXComboBox<String> editProductCategory;
 
     @FXML
-    private JFXTextField addProdcutPrice;
+    private JFXTextField editProductQuantity;
+
+    @FXML
+    private JFXTextField editProductPrice;
 
     @FXML
     private TableView<Product> tableView;
@@ -54,27 +56,24 @@ public class ProductManagerEditProductController {
     @FXML
     private TableColumn<Product, Double> colPrice;
 
-    Product selectedProduct;
-
 
     public void initialize() {
         setColumnProperties();
-        setProductItemsToTable(productDao.findAll());
-        tableView.getSelectionModel().selectedItemProperty().addListener((observable) -> {
-            selectedProduct = tableView.getSelectionModel().getSelectedItem();
-            setValueToProductInUI(selectedProduct);
-        });
+        setAllProductsToTable();
+        editProductCategory.getItems().setAll(CategoryEnum.getCategoryList());
+        makeSelectedEvent();
     }
-
 
     @FXML
     void cancelEditButton() {
-        setValueToProductInUI(new Product());
+        setValueToProductInGUI(new Product());
     }
+
 
     @FXML
     void saveEditButton() {
-
+        productDao.edit(getEditProduct());
+        setProductItemsToTable(productDao.findAll());
     }
 
 
@@ -87,17 +86,47 @@ public class ProductManagerEditProductController {
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
     }
 
+
     private void setProductItemsToTable(List<Product> products) {
         tableView.getItems().clear();
         tableView.getItems().setAll(products);
     }
 
-    private void setValueToProductInUI(Product product) {
-        addProductName.setText(product.getName());
-        addProductSerial.setText(product.getSerial());
-        addProductCategory.getSelectionModel().clearSelection();
-        addProductQuantity.setText(String.valueOf(product.getQuantity()));
-        addProdcutPrice.setText(String.valueOf(product.getPrice()));
+
+    private void setValueToProductInGUI(Product product) {
+        editProductID.setText(String.valueOf(product.getID()));
+        editProductName.setText(product.getName());
+        editProductSerial.setText(product.getSerial());
+        editProductCategory.getSelectionModel().select(CategoryEnum.getIndexOfCategory(product.getCategory()));
+        editProductQuantity.setText(String.valueOf(product.getQuantity()));
+        editProductPrice.setText(String.valueOf(product.getPrice()));
+    }
+
+
+    private Product getEditProduct() {
+        return new Product(
+                Integer.parseInt(editProductID.getText()),
+                editProductName.getText(),
+                editProductSerial.getText(),
+                editProductCategory.getSelectionModel().getSelectedItem(),
+                Integer.parseInt(editProductQuantity.getText()),
+                Double.parseDouble(editProductPrice.getText()));
+
+    }
+
+
+    private void makeSelectedEvent() {
+        tableView.getSelectionModel().selectedItemProperty().addListener((observable) -> {
+            selectedProduct = tableView.getSelectionModel().getSelectedItem();
+            if (selectedProduct != null) {
+                setValueToProductInGUI(selectedProduct);
+            }
+        });
+    }
+
+
+    private void setAllProductsToTable() {
+        setProductItemsToTable(productDao.findAll());
     }
 
 }

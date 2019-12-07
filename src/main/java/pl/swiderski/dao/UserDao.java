@@ -25,7 +25,7 @@ public class UserDao implements LoginService, CommandServiceDao<User>, QueryServ
     }
 
     @Override
-    public void edit(int ID, User user) {
+    public void edit(User user) {
 
     }
 
@@ -45,6 +45,7 @@ public class UserDao implements LoginService, CommandServiceDao<User>, QueryServ
             return false;
         }
     }
+
 
     @Override
     public boolean editPassword(int ID, String oldPass, String newPass) {

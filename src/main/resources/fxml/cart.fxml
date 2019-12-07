@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pl.swiderski.app.controllers.CartViewController">
+   <children>
+      <TableView fx:id="tableViewCart" layoutY="10.0" prefHeight="389.0" prefWidth="1036.0" stylesheets="@../table.css">
+         <columns>
+            <TableColumn fx:id="colCartID" prefWidth="84.0" resizable="false" text="ID" />
+            <TableColumn fx:id="colCartName" prefWidth="176.0" resizable="false" text="Name" />
+            <TableColumn fx:id="colCartSerial" prefWidth="173.0" resizable="false" text="Serial" />
+            <TableColumn fx:id="colCartCategory" prefWidth="172.0" resizable="false" text="Category" />
+            <TableColumn fx:id="colCartQuantity" minWidth="8.0" prefWidth="200.0" resizable="false" text="Quantity" />
+            <TableColumn fx:id="colCartPrice" prefWidth="189.0" resizable="false" text="Price" />
+         </columns>
+         <padding>
+            <Insets bottom="15.0" left="15.0" right="15.0" top="15.0" />
+         </padding>
+      </TableView>
+   </children>
+</AnchorPane>
